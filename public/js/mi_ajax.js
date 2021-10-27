@@ -1,3 +1,40 @@
+//Verifica si C.I. existe
+$(document).ready(function(){
+  $('#ci').focusout(function(){
+    var datos = $('#registro').serializeArray();
+    $.ajax({
+      url: "buscaPersona",
+      type: "GET",
+      data: datos
+    }).done(function(data){
+      if(data){
+        $('#ci').focus();
+        alert('Este C.I. ya se registro.\nCompruebe nuevamente por favor.');
+        $('#ci').val("");
+      }
+    });
+  });
+});
+
+function btnClick() {
+  var datos = $('#registro').serializeArray();
+  $.ajax({
+    url: "buscaPersona",
+    type: "GET",
+    data: datos
+  }).done(function(data){
+    if(data){
+      $('#ci').focus();
+      alert('Este C.I. ya se registro.\nCompruebe nuevamente por favor.');
+      $('#ci').val("");
+      return false;
+    }else{
+      return true;
+    }
+  });
+}
+
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'

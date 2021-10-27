@@ -5,6 +5,9 @@
         </h2>
     </x-slot>
 
+    <x-slot name="js">
+    </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-4 lg:px-4">
             <div class="bg-dark bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
@@ -17,14 +20,20 @@
                                 aria-expanded="false">Opciones</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('postulante.create') }}">Nuevo</a></li>
-                                <li><a class="dropdown-item" href="{{ route('postulante.importar') }}">Importar Notas</a></li>
+                                
+                                    @if (Auth::user()->nivel == 1)
+                                    <li><a class="dropdown-item" href="{{ route('postulante.importar') }}">Importar Notas</a></li>
+                                    @endif
+                                
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <form action="{{ route('logout') }}" method="POST" onclick="return confirm('¡Esta por cerrar sesión!')">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">Cerrar</button>
+                                    </form>
                                 </li>
-                                <li><a class="dropdown-item" href="">Otro</a></li>
                             </ul>
                         </li>
-                
                     </ul>
                     <table id="example" class="display" style="width:100%">
                         <thead>
@@ -54,8 +63,8 @@
                                     <td>{{ $postulante->cpt }}</td>
                                     <td>{{ $postulante->monto }}</td>
                                     <td><img src="{{ asset('storage').'/'.$postulante->foto }}" width="50px" alt=""></td>
-                                    <td>{{ $postulante->carrera }}</td>
-                                    <td>{{ $postulante->modalidad }}</td>
+                                    <td>{{ ucwords($postulante->carrera) }}</td>
+                                    <td>{{ ucwords($postulante->modalidad) }}</td>
                                     <td>{{ $postulante->nota1 }}</td>
                                     <td>{{ $postulante->nota2 }}</td>
                                     <td><a href="{{ route('postulante.edit', $postulante->ci) }}"

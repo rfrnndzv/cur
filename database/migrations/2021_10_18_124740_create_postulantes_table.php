@@ -14,10 +14,10 @@ class CreatePostulantesTable extends Migration
     public function up()
     {
         Schema::create('postulantes', function (Blueprint $table) {
-            $table->integer('ci')->primary();
+            $table->string('ci')->primary();
 
             $table->string('cpt');
-            $table->decimal('monto', 5, 2);
+            $table->decimal('monto', 10, 2);
             $table->string('foto')->nullable();
             $table->string('carrera', 19);
             $table->string('modalidad', 10);

@@ -137,4 +137,8 @@ class PostulanteController extends Controller
     public function importar(){
         return 'Importando notas';
     }
+
+    public function generarPDF(){
+        
+    }
 }

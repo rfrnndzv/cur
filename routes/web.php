@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PostulanteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::c
 
 Route::middleware('superusuario')->resource('usuario', UserController::class);
 
+Route::get('postulante/buscaPersona', [PersonaController::class, 'busca']);
 Route::middleware('usuario')->resource('postulante', PostulanteController::class);
 Route::middleware('usuario')->get('qrcode/{postulante}', [PostulanteController::class, 'qrcode'])->name('postulante.qrcode');
 Route::middleware('usuario')->get('importar', [PostulanteController::class, 'importar'])->name('postulante.importar');

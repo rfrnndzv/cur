@@ -64,6 +64,9 @@
             $('#example').DataTable();
         });
     </script>
+
+    {{ $js }}
+
 </body>
 
 </html>

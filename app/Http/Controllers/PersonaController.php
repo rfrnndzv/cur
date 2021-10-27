@@ -82,4 +82,13 @@ class PersonaController extends Controller
     {
         //
     }
+
+    public function busca(Request $request){
+        $persona = Persona::find($request->ci);
+        
+        if(isset($persona->ci)){
+            return true;
+        }
+        return false;
+    }
 }

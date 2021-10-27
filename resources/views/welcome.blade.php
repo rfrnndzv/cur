@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('content')
-    <div class="container text-white" style="min-height:500px;">
+    <div class="container" style="min-height:500px;">
         <div class="row justify-content-center">
             <div class="col text-center">
                 <img src="{{ asset('img/logoPA.png') }}" alt="" height="150" width="150">
