@@ -7,6 +7,7 @@ use App\Models\Postulante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PostulanteController extends Controller
 {
@@ -134,11 +135,21 @@ class PostulanteController extends Controller
         return view('Postulante.qrcode', compact('postulante', 'persona'));
     }
 
+    public function buscaCPT(Request $request){
+        $postulante = Postulante::where('cpt', 'like', $request->cpt)->get()->first();
+        if($postulante != null){
+            return true;
+        }
+        return false;
+    }
+
     public function importar(){
         return 'Importando notas';
     }
 
-    public function generarPDF(){
-        
+    public function generarPdf(Postulante $postulante){
+        $persona = Persona::find($postulante->ci);
+        $pdf = PDF::loadView('Postulante.qrcode', compact('postulante', 'persona'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
     }
 }

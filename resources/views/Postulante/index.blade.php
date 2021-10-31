@@ -78,7 +78,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a href="{{ route('postulante.qrcode', $postulante->ci) }}"
+                                        <a href="{{ route('postulante.pdf', $postulante->ci) }}"
                                             class="btn btn-success">QR</a>
                                     </td>
                                 </tr>

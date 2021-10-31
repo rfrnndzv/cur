@@ -16,24 +16,23 @@ $(document).ready(function(){
   });
 });
 
-function btnClick() {
-  var datos = $('#registro').serializeArray();
-  $.ajax({
-    url: "buscaPersona",
-    type: "GET",
-    data: datos
-  }).done(function(data){
-    if(data){
-      $('#ci').focus();
-      alert('Este C.I. ya se registro.\nCompruebe nuevamente por favor.');
-      $('#ci').val("");
-      return false;
-    }else{
-      return true;
-    }
+//Verifica si CPT existe
+$(document).ready(function(){
+  $('#cpt').focusout(function(){
+    var datos = $('#registro').serializeArray();
+    $.ajax({
+      url: "buscaCPT",
+      type: "GET",
+      data: datos
+    }).done(function(data){
+      if(data){
+        $('#cpt').focus();
+        alert('Este código CPT ya se registro.\nCompruebe nuevamente por favor.');
+        $('#cpt').val("");
+      }
+    });
   });
-}
-
+});
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {

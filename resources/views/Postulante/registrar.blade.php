@@ -6,25 +6,9 @@
     </x-slot>
 
     <x-slot name="js">
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            $('.formulario-registrar').submit(function(e) {
-                e.preventDefault();
-                var datos = $('#registro').serializeArray();
-                $.ajax({
-                    url: "buscaPersona",
-                    type: "GET",
-                    data: datos
-                }).done(function(data) {
-                    if (data == 1) {
-                        $('#ci').focus();
-                        Swal.fire('El C.I. ya se registró')
-                        $('#ci').val("");
-                    }else{
-                        $('#registro').submit();
-                    }
-                });
-                
+            $('#btn_registrar').hover(function() {
+                $('#nombres').focus();
             });
         </script>
     </x-slot>
@@ -35,7 +19,7 @@
                 <!-- Contenido de la Página -->
                 <div class="container text-white bg-gray-500">
                     <h1>Registro de Postulante</h1>
-                    <form id="registro" class="row g-3 needs-validation formulario-registrar" method="POST"
+                    <form id="registro" class="row g-3 needs-validation formulario-registrar" action="{{ route('postulante.store') }}" method="POST"
                         enctype="multipart/form-data" novalidate>
 
                         @csrf
@@ -116,8 +100,7 @@
 
                         <div class="row g-3">
                             <div class="col-6">
-                                <button id="btn_registrar" class="btn btn-primary" type="submit"
-                                    onclick="return btnClick();">Registrar</button>
+                                <button id="btn_registrar" class="btn btn-primary" type="submit">Registrar</button>
                             </div>
 
                             <div class="col-6">

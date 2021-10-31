@@ -5,15 +5,23 @@
         </h2>
     </x-slot>
 
-    <x-slot name="js">
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-4 lg:px-4">
             <div class="bg-dark bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- Contenido de la Página -->
                 <div class="container">
-                    
+                    <ul class="nav nav-pills">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Opciones</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('postulante.index') }}">Retornar</a></li>
+                                <li><a class="dropdown-item" href="">Generar PDF</a></li>
+                            </ul>
+                        </li>
+                
+                    </ul>
 
                     <div class="row">
                         <div class="col-2">
@@ -73,6 +81,8 @@
                         <div class="col-4">
                             <img src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->merge(public_path('img/LogoPA.png'), .3, true)->errorCorrection('H')->size(250)->generate($postulante->cpt)) }}" alt="">
                         </div>
+                        
+                        <a href="" class="btn btn-success">Generar PDF</a>
                     </div>
                 </div>
             </div>
